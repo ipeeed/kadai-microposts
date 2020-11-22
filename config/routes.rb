@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new' #下記でusers#newを設定しているにもかかわらずここで設定するのは、URLを/signupにするため。URLが/users/newだと少々不恰好。
   resources :users, only: [:index, :show, :new, :create]
+  
+  resources :microposts, only: [:create, :destroy] #microposts単独でのshowは必要ない。userに紐づいており、(一覧)表示するにしてもそちらでするため。
 
 end

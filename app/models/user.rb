@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_secure_password #railsの標準機能であり、password_digestカラムを検知して、パスワード保存の際に暗号化する。
                       #自動でログイン認証用のメソッド authenticate を提供する。
                       #なお、暗号化にはgem bcryptが必要。Gemfileに初期記載されているがコメントアウトされているので有効化する。
+                      
+  has_many :microposts
      
     
 end
