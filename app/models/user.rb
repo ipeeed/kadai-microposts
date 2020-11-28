@@ -30,6 +30,10 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+  
+  def feed_microposts
+    Micropost.where(user_id: self.following_ids + [self.id]) #[self.id]は、self.following_idsで得られる配列情報にデータ型を合わせるために配列に変換している。
+  end                                                        #findだと一件だけになるためwhereなのだと思われる。
      
     
 end
