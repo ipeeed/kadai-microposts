@@ -8,8 +8,15 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy' #3件いずれも、URLの見栄え重視でresourcesを使わない。　resources :sessions, only: [:new, :create, :destroy]
   
   get 'signup', to: 'users#new' #下記でusers#newを設定しているにもかかわらずここで設定するのは、URLを/signupにするため。URLが/users/newだと少々不恰好。
-  resources :users, only: [:index, :show, :new, :create]
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :followings
+      get :followers
+    end
+  end
   
   resources :microposts, only: [:create, :destroy] #microposts単独でのshowは必要ない。userに紐づいており、(一覧)表示するにしてもそちらでするため。
+  
+  resources :relationships, only: [:create, :destroy]
 
 end
