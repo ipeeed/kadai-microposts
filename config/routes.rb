@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :microposts, only: [:create, :destroy] #microposts単独でのshowは必要ない。userに紐づいており、(一覧)表示するにしてもそちらでするため。
+  resources :microposts, only: [:create, :destroy] do #microposts単独でのshowは必要ない。userに紐づいており、(一覧)表示するにしてもそちらでするため。
+    member do
+      get :attracteds
+    end
+  end
   
   resources :relationships, only: [:create, :destroy]
   

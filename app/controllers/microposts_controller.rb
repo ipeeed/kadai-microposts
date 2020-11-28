@@ -20,6 +20,10 @@ class MicropostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def attracteds
+    @users = Micropost.find(params[:id]).attracteds.order(created_at: :desc).page(params[:page])
+  end
+  
   private
   def micropost_params
     params.require(:micropost).permit(:content)
