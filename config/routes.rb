@@ -12,11 +12,14 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :likes
     end
   end
   
   resources :microposts, only: [:create, :destroy] #microposts単独でのshowは必要ない。userに紐づいており、(一覧)表示するにしてもそちらでするため。
   
   resources :relationships, only: [:create, :destroy]
+  
+  resources :favorites, only: [:create, :destroy]
 
 end
