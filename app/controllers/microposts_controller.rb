@@ -19,11 +19,11 @@ class MicropostsController < ApplicationController
     flash[:success] = 'メッセージを削除しました。'
     redirect_back(fallback_location: root_path)
   end
-  
+=begin
   def attracteds
     @users = Micropost.find(params[:id]).attracteds.order(created_at: :desc).page(params[:page])
   end
-  
+=end  
   private
   def micropost_params
     params.require(:micropost).permit(:content)
